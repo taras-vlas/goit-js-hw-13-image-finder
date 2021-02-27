@@ -95,7 +95,7 @@ npm run build
       + git commit -a -m “hw 13 image-finder add - комiт”     (-am ),
 
     git remote add origin https://github.com/taras-vlas/goit-js-hw-10-food-service.git
-      git remote add origin https://github.com/taras-vlas/goit-js-hw-12-countries
+      git remote add origin https://github.com/taras-vlas/goit-js-hw-13-image-finder
     git branch -M master
     git push -u origin master
 
