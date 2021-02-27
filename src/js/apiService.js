@@ -2,32 +2,35 @@
  *     apiService.js  -  об'єкт виконує логіку
  */
 
-const apiKey = '3ee881b7ed69420ebc0d692477003d40';
-
+//const apiKey = '20347157-bf35dc9934e298cd0bab289fc';
+                
 export default {
     searchQuery: '',
     page: 1,
+    perPage: 12,
+    //  apiKey: '20347157-bf35dc9934e298cd0bab289fc',
+              
+     
+                        //async /* REST-пагінація */!!! отримати на цю адресу запит    
+async fetchPhotos() {     
+      const apiKey = '20347157-bf35dc9934e298cd0bab289fc';
+    const url = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&orientation=horizontal&q=${this.searchQuery}&per_page=${this.perPage}&page=${this.page}`; /* як варіант звернення до GET-ера  */
+       
+    // const options = {
+    //     headers: { Authorization: apiKey,},
+    // };
 
-    fetchArticles(searchQuery) {   ///* REST-пагінація */!!! отримати на цю адресу запит                                                  /* REST-пагінація */
-        const url = `https://pixabay.com/api/?image_type=photo&
-            orientation=horizontal&
-            q=${this.query}&
-            page=${this.page}&
-            per_page=12&
-            key=${apiKey}`; /* як варіант звернення до GET-ера  */
-
-        const options = {
-            headers: { Authorization: apiKey,},
-        };
-
-        return fetch(url, options)
+    // return fetch(url, options)
+        return fetch(url)    
             .then(res => res.json())    //повернення res.json()
-            .then(({ articles }) => {
+             .catch(console.log)
+            .then(({ hits }) => {
                 //this.page += 1; /* виносим в incrementPage() */
                 this.incrementPage(); /*  incrementPage() */
 
-                return articles;
-            });       // !!! Це відповідь на наш запит          
+                return hits;
+            })       // !!! Це відповідь на наш запит  
+             .catch(error => console.log(error));        
     },
     resetPage() {
         this.page = 1;
@@ -41,4 +44,7 @@ export default {
     set query(value) {
         this.searchQuery = value;
     },
+
 };
+
+

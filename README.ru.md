@@ -15,6 +15,15 @@
 # Инструкции Pixabay API
 Для HTTP-запросов используй публичный Pixabay API. Зарегистрируйся и получи ключ.
 
+
+
+-          ##  как зарегистрировать и получить ключ на Pixabay API
+            --google API console;
+            --TGonta  https://newsapi.org    t/T     nka58      
+
+
+
+
 URL-строка запроса:
 
 https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=что_искать&page=номер_страницы&per_page=12&key=твой_ключ

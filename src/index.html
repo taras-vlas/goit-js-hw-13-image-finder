@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>JS-13-image-finder</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <!-- Або додавши npm-пакет material-design-icons і імпортувавши веб-шрифт в index.js -->
+    <!-- Або додавши npm-пакет material-design-icons і імпортувавши веб-шрифт в index.js  (Для иконок используются Material icons-  https://google.github.io/material-design-icons/ ) -->
     
+    <!-- <link rel="icon" href="images/favicon.png" sizes="32x32" /> -->
+    
+    <title>JS-13-Image-Finder</title>
+
     <!-- Don't forget to delete this style tag. -->
-    <style>
+    <!-- <style>
       body {
         min-height: 100vh;
         margin: 0;
@@ -33,33 +38,37 @@
         max-width: 100%;
         height: auto;
       }
-    </style>
+    </style> -->
 
-  </head>
+</head>
 
-  <body>
-                <!-- Форма пошуку -->
-            <form class="search-form" id="search-form">
-                  <input 
-                    type="text" 
-                    name="query" 
-                    autocomplete="off" 
-                    placeholder="Search images..." />
+<body>
+   
+  <nav>
+    <h1>Image FINDER</h1>
+  </nav>
 
-                <button class="btn" type="submit">Search</button>
-            </form>
+    <!--  introduction(вступ) <article></article>-->
+    <form class="search-form js-search-form" id="search-form" >  <!-- onclick = "myFunc.call(this)" -- добавляем атрибут событий onclick -->
+          
+        <input 
+          type="text" 
+          name="query"          
+          autocomplete="off" 
+          placeholder="  Search images...  "
+        />
 
-            <ul class="gallery">
-                <!-- Список <li> с карточками изображений -->
-            </ul>
+    </form>
+                     <!-- повідомлення -->
+      <p class="is-hidden notification">
+        Uploaded images: <span id="js-search-notification"></span>
+      </p>
+    <!-- <article></article> -->
+    <ul class="gallery-container">         
+          <!-- Список <li> з картками зображень -->
+    </ul> 
+        
+    <div class="spinner is-hidden"></div>
+</body>
 
-                <button type="button" data-action="load-more">Load more</button>
-
-      <article class="intro">
-        <h1>Webpack starter kit</h1>
-
-      <!-- HTML image reference example. -->
-      <img src="./images/intro.png" alt="" width="640" />
-    </article>
-  </body>
 </html>

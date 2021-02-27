@@ -1,14 +1,35 @@
-const searchForm = document.querySelector('.js-search-form');
-const articlesContainer = document.querySelector('.js-articles');
-const loadMoreBtn = document.querySelector('[data-action="load-more"]');
 
-// const loadMoreBtnLabel = loadMoreBtn.querySelector('.label',);
-// const loadMoreBtnSpinner = loadMoreBtn.querySelector('.spinner',);
+// Duka
+/*      Використання ref:
+ * - Контроль фокусу, виділення тексту чи контроль програвання медіа.
+ * - Виклик імперативної(обов'язкової) анімації.
+ * - Інтеграція зі сторонніми DOM-бібліотеками.
+ */
 
-export default {
-    searchForm,
-    articlesContainer,
-    loadMoreBtn,
-    // loadMoreBtnLabel,
-    // loadMoreBtnSpinner,
+const refs = {
+  searchForm: () => document.querySelector('.js-search-form'),   // находим первый элемент <.js-search-form> в документе
+  galleryContainer: () => document.querySelector('.gallery-container'),
+  spin: () => document.querySelector('.spinner'),
+  photo: () => document.querySelector('.photo'),  // находим первый элемент <.photo> в документе
+  savedSearch: () => document.querySelector('.notification'),
+  message: () => document.getElementById('js-search-notification'),
 };
+
+export default refs;
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // list: document.querySelector('.gallery'),
+  // btn: document.querySelector('.load-more'),
+  // input: document.querySelector('input'),
+  // sumbit: document.querySelector('.submit'),
