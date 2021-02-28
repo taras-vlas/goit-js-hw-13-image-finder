@@ -1,5 +1,4 @@
 /*
- *     Використовуєм окремий об'єкт для збереження логіки 
  *     apiService.js  -  об'єкт виконує логіку
  */
 
@@ -13,7 +12,7 @@ export default {
               
      
                         //async /* REST-пагінація */!!! отримати на цю адресу запит    
-async fetchArticles() {     
+async fetchPhotos() {     
       const apiKey = '20347157-bf35dc9934e298cd0bab289fc';
     const url = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&orientation=horizontal&q=${this.searchQuery}&per_page=${this.perPage}&page=${this.page}`; /* як варіант звернення до GET-ера  */
        
@@ -40,11 +39,12 @@ async fetchArticles() {
         this.page += 1;
     },
     get query() {         /*  на всяк випадок стоять */
-            console.log('get this.searchQuery:', this.searchQuery);
         return this.searchQuery;
     },
-    set query(value) {            
+    set query(value) {
         this.searchQuery = value;
     },
 
 };
+
+

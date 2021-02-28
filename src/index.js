@@ -1,74 +1,94 @@
+/*        -  Дає уявлення
+Використання окремого об'єкта для збереження логіки /чи уявлення 
+Можна виконувати як:
+    як об'єкт (+методи, +властивості/property);
+    як модуль;
+    локальними змінними;
+    функціями;
+    класами
+*/
+
 
 import './styles.css';
+//import './sass/styles.scss';
+//import articlesTpl from './templates/articles.hbs'; // затягуємо цей шаблон templates  /////забираєм до ...js
+//import fetchArticles from './js/apiService.js';
+
 import apiService from './js/apiService';
-import renderMarkup from './js/updateMarkup';
+    console.log('apiService: ', apiService);   
+import updateArticlesMarkup from './js/update-articles-markup.js';
+//import loadMoreBtn from './js/components/load-more-button'; /* Варіант для  Об'єкта */ 
+  import LoadMoreBtn from './js/components/load-more-button'; /* Варіант для  Класу */
 import refs from './js/refs';
-import infinityScroll from './js/scroll';
-import lightBox from './js/lightbox';
+  import lightBox from './js/lightbox';
+  import infinityScroll from './js/scroll';  
+
+ /* fetch - отримати | api = backend  */
 
 
-refs.searchForm().addEventListener('submit', function(event) { // регистрируем обработчик события "submit" для элемента <refs.searchForm()>  //подія submit на [ФОРМІ]- відвідувач 
-  event.preventDefault();                                   //event.preventDefault() визиваєм якщо є помилки  
-  const form = event.currentTarget;                      //event.currentTarget - элемент, на котором сработал обработчик: читання
+/* Варіант для  Класу */
+//console.log(new LoadMoreBtn('button[data-action="load-more"]'));
+/* Робимо новий spinner */
+//const loadMoreBtn = new LoadMoreBtn('button[data-action="load-more"]');
+//console.log(loadMoreBtn);
+const loadMoreBtn = new LoadMoreBtn({  /*для btn без is-hidden*/
+    selector: 'button[data-action="load-more"]',
+    hidden: true,                  
+    });
+ console.log(loadMoreBtn); 
 
-  apiService.searchQuery = form.elements.query.value;
+// const loadMoreUsersBtn = new LoadMoreBtn('.load-more-enything'); /* Можна зробити безліч цих кнопок на Класі */
+//  console.log(loadMoreUsersBtn);
 
-  refs.galleryContainer().innerHTML = '';
-  apiService.resetPage();
-  fetchPhotos();
-  savedSearchText();
-  lightBox();
-  form.reset();
+refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
+loadMoreBtn.refs.button.addEventListener('click', fetchArticles);
 
-  //messageText();
-});
+function searchFormSubmitHandler(event) {
+    event.preventDefault();
 
-  infinityScroll();
+    const form = event.currentTarget;   
+    apiService.query = form.elements.query.value;
+        console.log('apiService.query: ', apiService.query);
+    
+    clearArticlesContainer();
+    apiService.resetPage();
+    fetchArticles();
+    form.reset();  
+         savedSearchText();
+        lightBox(); 
+        
+}
 
+    infinityScroll();
+        
+function fetchArticles() {
+    loadMoreBtn.disable();
 
-      function fetchPhotos() {
-        refs.spin().classList.remove('is-hidden');
-        apiService.fetchPhotos()
-          .then(photos => {
-            renderMarkup(photos);
-          })
-          .finally(() => refs.spin().classList.add('is-hidden'));
-      }
-
-const savedSearchText = () => {
-  //refs.savedSearch().classList.remove('is-hidden');
-
-        /*  Results for <span id="js-search-notification"> */
-        //const messageText = (event) => {
-    const form = event.currentTarget; //event.currentTarget - элемент, на котором сработал обработчик 
-    refs.message().textContent = form.elements.query.value;
-    //refs.savedSearch().textContent = form.elements.query.value;
-        //};
-};     
-
-//   /* '.notification' */
-// const savedSearchText = () => {
-//   refs.savedSearch().classList.remove('is-hidden');
-// };
-
-//   /*  Results for <span id="js-search-notification"> */
-// const messageText = (event) => {
-//   const form = event.currentTarget; //event.currentTarget - элемент, на котором сработал обработчик 
-//   refs.message().textContent = form.elements.query.value;
-// };
-
-export default fetchPhotos;
+    apiService.fetchArticles().then(articles => {
+        updateArticlesMarkup(articles);
+        loadMoreBtn.show();
+        loadMoreBtn.enable();
+    });
+}   
 
 
+        const savedSearchText = () => {
+        // //refs.savedSearch().classList.remove('is-hidden');
 
-/*            Всплытие 
- *       Алгоритм:          https://learn.javascript.ru/bubbling-and-capturing
- * - При наступлении события – элемент, на котором оно произошло, помечается как «целевой» (event.target).
- * - Далее событие сначала двигается вниз от корня документа к event.target, по пути вызывая обработчики, поставленные через addEventListener(...., true).
- * - Далее событие двигается от event.target вверх к корню документа, по пути вызывая обработчики, поставленные через on* и addEventListener(...., false).
- *      
- *       Каждый обработчик имеет доступ к свойствам события: 
- * - event.target – самый глубокий элемент, на котором произошло событие.
- * - event.currentTarget (=this) – элемент, на котором в данный момент сработал обработчик (до которого «доплыло» событие).
- * - event.eventPhase – на какой фазе он сработал (погружение =1, всплытие = 3).
- */
+        //         /*  Results for <span id="js-search-yourQuery"> */
+        //         //const messageText = (event) => {
+        const form = event.currentTarget; //event.currentTarget - элемент, на котором сработал обработчик 
+            
+        refs.message().textContent = form.elements.query.value;
+           // console.log('refs.message().textContent', refs.message().textContent)
+            //refs.savedSearch().textContent = form.elements.query.value;
+                //};
+        };  
+
+
+function clearArticlesContainer() {
+    refs.articlesContainer.innerHTML = '';  /* хороший спосіб очистки */
+}
+
+
+export default fetchArticles;

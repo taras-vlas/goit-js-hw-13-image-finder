@@ -92,7 +92,7 @@ npm run build
         git init
         git add -A
       + git add --all
-      + git commit -a -m “hw 13 image-finder add - комiт”     (-am ),
+      + git commit -a -m “hw 13 image-finder New add - комiт”     (-am ),
 
     git remote add origin https://github.com/taras-vlas/goit-js-hw-10-food-service.git
       git remote add origin https://github.com/taras-vlas/goit-js-hw-13-image-finder
@@ -116,3 +116,20 @@ npm run deploy
 
 ***
 https://basicweb.ru/javascript/js_eventtarget_addeventlistener.php
+
+
+⚠️ **ВНИМАНИЕ!** HTTP-запросы на бекенд происходят не по сабмиту формы, формы
+нет, а при наборе имени страны в инпуте, то есть по событию `input`. Но делать
+HTTP-запрос при каждом нажатии клавиши нельзя, так как одновременно получится
+много HTTP-запросов которые будут выполняться в непредсказуемом порядке (race
+conditions). Поэтому на обработчик события необходимо применить подход
+`debounce` и делать HTTP-запрос спустя `500мс` после того, как пользователь
+перестал вводить текст. Используй npm-пакет
+[lodash.debounce](https://www.npmjs.com/package/lodash.debounce).
+
+Если бекенд вернул больше чем 10 стран подошедших под критерий введенный
+пользователем, в интерфейсе отображается нотификация о том, что необходимо
+сделать запрос более специфичным. Для оповещений используй плагин
+[pnotify](https://github.com/sciactive/pnotify).
+
+![оповещение](assets/query-prompt.png)

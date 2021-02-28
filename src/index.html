@@ -1,54 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <title>JS-13-Image-Finder</title>
+    <!-- bootstrap можна поставити таким способом -->
+    <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+      crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- Або додавши npm-пакет material-design-icons і імпортувавши веб-шрифт в index.js  (Для иконок используются Material icons-  https://google.github.io/material-design-icons/ ) -->
     
     <!-- <link rel="icon" href="images/favicon.png" sizes="32x32" /> -->
-    
-    <title>JS-13-Image-Finder</title>
-
-    <!-- Don't forget to delete this style tag. -->
-    <!-- <style>
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .intro {
-        text-align: center;
-      }
-
-      .intro h1 {
-        margin-top: 0;
-        font-weight: 500;
-        font-size: 40px;
-      }
-
-      .intro img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-    </style> -->
-
-</head>
-
-<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
    
-  <nav>
-    <h1>Image FINDER</h1>
-  </nav>
+  </head>
 
-    <!--  introduction(вступ) <article></article>-->
+  <body>
+              <nav>
+                <h1>Image FINDER</h1>
+              </nav>
+              
+              <!--  introduction(вступ) -->
+    
     <form class="search-form js-search-form" id="search-form" >  <!-- onclick = "myFunc.call(this)" -- добавляем атрибут событий onclick -->
           
         <input 
@@ -58,17 +36,31 @@
           placeholder="  Search images...  "
         />
 
+      <!-- <button type="submit">Шукати</button> -->
     </form>
                      <!-- повідомлення -->
-      <p class="is-hidden notification">
-        Uploaded images: <span id="js-search-notification"></span>
-      </p>
-    <!-- <article></article> -->
-    <ul class="gallery-container">         
-          <!-- Список <li> з картками зображень -->
-    </ul> 
-        
-    <div class="spinner is-hidden"></div>
-</body>
+              <p class="is-hidden notification">
+                  Uploaded images: <span id="js-search-yourQuery"></span>
+              </p>
+              
+    <ul class="js-articles  gallery"></ul>
 
+<!-- 34:00  Вебинар 26 (16.04) ...is-hidden    -->
+    <button 
+      type="button" 
+      class="btn btn-primary button is-hidden" 
+      data-action="load-more"
+    >
+
+   <!-- class="spinner-border spinner-border-sm spinner is-hidden" -->
+      <span 
+        class="spinner-border spinner-border-sm spinner "  
+        role="status" 
+        aria-hidden="true"
+      ></span>
+                    <!-- для btn 1-ї стор. -->
+      <span class="label">Load more</span>
+    </button>
+
+  </body>
 </html>

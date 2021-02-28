@@ -1,5 +1,5 @@
 
-import fetchArticles from '../index';
+import fetchPhotos from '../index';
 
 /* 
  * нескінчений скрол (infinityScroll) у видимій області (viewport)
@@ -8,8 +8,7 @@ import fetchArticles from '../index';
       console.log('document.documentElement.offsetHeight', document.documentElement.offsetHeight);
 
          window.scrollBy({
-          // top: scrollHeight,
-          top: document.documentElement.offsetHeight
+          top: scrollHeight,
           behavior: 'smooth',  //Плавна прокрутка
    });
  */
@@ -26,7 +25,7 @@ const infinityScroll = () => {
 
       console.log('scrollTop + clientHeight: ', scrollTop + clientHeight,'scrollHeight: ', scrollHeight);
      /* (this.scrollHeight - this.scrollTop === this.clientHeight) возвращает true, если элемент был прокручен до конца */
-    if (scrollTop + clientHeight >= scrollHeight) setTimeout(fetchArticles(), 1000);
+    if (scrollTop + clientHeight >= scrollHeight) setTimeout(fetchPhotos(), 1000);
   });
 };
 

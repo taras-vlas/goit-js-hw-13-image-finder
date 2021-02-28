@@ -4,8 +4,7 @@ import refs from './refs';
 
 const lightBox = () => {
   // регистрируем обработчик события "click" для элемента <refs. ...>
-   refs.galleryContainer().addEventListener('click', function(event) {  // function(event)  замість  () =>
-// refs.articlesContainer().addEventListener('click', function(event) { 
+  refs.galleryContainer().addEventListener('click', function(event) {  // function(event)  замість  () =>
     if (refs.photo().nodeName !== "IMG") {
       return;
     }
